@@ -3,8 +3,8 @@ CXX=g++
 LD=g++
 
 CXXFLAGS= -std=c++11
-CPPFLAGS= $(shell pkg-config --cflags protobuf grpc) -I.
-LDFLAGS=$(shell pkg-config --libs protobuf grpc++ grpc) \
+CPPFLAGS= $(shell pkg-config --cflags protobuf grpc) $(shell mecab-config --cflags)-I.
+LDFLAGS=$(shell pkg-config --libs protobuf grpc++ grpc) $(shell mecab-config --libs) \
   -lgrpc++_reflection -ldl
 
 PROTOC = protoc
