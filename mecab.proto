@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package mecab;
+
+service MeCabServer {
+  rpc Parse (Query) returns (MeCabResult) {}
+}
+
+message Query {
+  string document = 1;
+  enum Pos {
+    Noun = 0;
+    Verb = 1;
+    Adjective = 2;
+  }
+  repeated Pos poses = 2;
+}
+
+message MeCabResult {
+  message Token {
+    string surface = 1;
+    string pos = 2;
+    int32 begin = 3;
+    int32 len = 4;
+  }
+  repeated Token tokens = 1;
+  int32 num_all_tokens = 2;
+}
